@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using OpenHAB.Core.Model;
 
@@ -38,6 +38,11 @@ namespace OpenHAB.Core.Services
         /// <returns>The previous visted widget</returns>
         public static OpenHABWidget GoBack()
         {
+            if (WidgetBackStack.Count == 0)
+            {
+                return null;
+            }
+
             WidgetBackStack.Pop();
             _currentWidget = WidgetBackStack.Count == 0 ? null : WidgetBackStack.Peek();
 
